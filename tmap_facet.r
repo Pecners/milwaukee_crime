@@ -1,3 +1,5 @@
+# I dare do all that may become a man...
+
 library(tidyverse)
 library(sf)
 library(tmap)
@@ -11,6 +13,10 @@ crime <- read_csv("https://data.milwaukee.gov/dataset/e5feaad3-ee73-418c-b65d-ef
 crime_location <- crime %>%
   filter(!is.na(RoughX) & !is.na(RoughY)) %>%
   st_as_sf(coords = c("RoughX", "RoughY"), crs = 32054)
+
+# Shapefiles can be found online
+# or I have a repo here: https://github.com/Pecners/shapefiles
+# Note that you will need all files located in a single folder
 
 neighb <- read_sf("milwaukee_neighborhood/neighborhood.shp")
 crime_neighb <- st_transform(crime_location, crs = st_crs(neighb))
